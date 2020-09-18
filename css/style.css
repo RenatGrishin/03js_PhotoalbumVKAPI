@@ -1,0 +1,346 @@
+body, div, h1, h2, h3, h4, h5, p{
+    margin: 0; padding: 0;
+    font-family: sans-serif;
+}
+
+/* Навигация */
+.nav{
+    border-bottom: 1px solid #bababa;
+    position: relative;
+    z-index: 100;
+    padding-top: 14px;
+}
+.nav div{
+    width: 60px;
+    padding: 6px 0;
+    border: 1px solid #bababa;
+    border-radius: 3px 3px 0px 0px;
+    display: inline-block;
+    margin-left: 15px;
+    margin-bottom: -1px;
+    z-index: 120;
+    bottom: 2px;
+    text-align: center;
+}
+.nav div img{
+    opacity: 30%;
+}
+.nav div img:hover{
+    opacity: 70%;
+}
+#nav-div-selected{
+    border-bottom: 1px solid #fff;
+}
+#nav-div-selected img{
+    opacity: 100%
+}
+
+/* Header */
+.header{
+    padding: 10px 15px;
+    border-bottom: 1px solid #bababa;
+    color: #7b7b7b;
+    min-height: 24px;
+}
+.header h3 span{
+    cursor: pointer;
+}
+.header h3 span:hover{
+    opacity: 70%;
+}
+
+/* Список фотоальбомов */
+.album{
+    background-color: #f6f6f6;
+    border-bottom: 1px solid #bababa;
+    position: relative;
+    height: 108px;
+}
+.album:hover{
+    background-color: #ebebeb;
+}
+.album .albumIMG{
+    width: 80px;
+    height: 80px;
+    background-color: aqua;
+    position: absolute;
+    top: 14px;
+    left: 30px;
+}
+.albumIMG img, .photoInAlbum img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.album h2{
+    font-size: 18px;
+    position: absolute;
+    top: 18px;
+    left: 130px;
+    color: #0078d4;
+}
+.size, .updated{
+    font-size: 10px;
+    color: 7b7b7b;
+    position: absolute;
+    left: 130px;
+    top: 50px;
+    font-size: 16px;
+}
+.size img, .updated img{
+    width: 14px;
+    margin-right: 8px;
+    margin-bottom: -1px;
+    opacity: 70%;
+}
+.albumArrow{
+    position: absolute;
+    right: 20px;
+    top: 40px;
+}
+.updated{
+    top: 74px;
+}
+
+/* Альбом с фотографиями */
+.photoInAlbum{
+    width: 170px;
+    height: 200px;
+    margin-left: 20px;
+    margin-top: 20px;
+    float: left;
+    position: relative;
+    border-radius: 6px;
+    border: 1px solid #bababa;
+}
+.photoInAlbum img{
+    z-index: 90;
+    border-radius: 6px;
+}
+.photoInAlbum div{
+    position: absolute;
+    z-index: 100;
+    background-color: #f0f0f0;
+    width: 100%;
+    bottom: 0px;
+    border-radius: 0 0 6px 6px;
+    color: #0078d4;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.photoInAlbum div a{
+    margin: 6px 6px;
+    cursor: pointer;
+}
+.photoInAlbum div a span:hover{
+    border-bottom: 0px;
+}
+.photoInAlbum div a span{
+    border-bottom: 1px dashed #0078d4;
+}
+.tooptipDiv{
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    z-index: 200;
+}
+.tooptipDivArrow{
+    width: 23px;
+    height: 10px;
+    background-image: url(../image/12.png);
+    opacity: 70%;
+}
+.tooptipBody{
+    width: 98%;
+    margin: 0 auto;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.tooptipBody div{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 6px;
+    display:inline-block;
+    width: 100%;
+}
+.tooptipBody div h5{
+    font-size: 14px;
+    width: 100px;
+    text-align: left;
+    float: left;
+}
+.tooptipBody div p{
+    font-size: 14px;
+    float: left;
+    width: 70%;
+}
+.tooptipBody div {
+    color: #fff;
+}
+
+/* Страница с фотографией */
+.photoAlbum-Body{
+    position: relative;
+}
+#arrow-back{
+    opacity: 50%;
+    height: 13px;
+    margin-right: 10px;
+}
+#arrow-folder{
+    height: 20px;
+    opacity: 50%;
+    margin-bottom: -2px;
+    margin-right: 10px;
+}
+.image{
+    margin: 0 auto;
+    max-width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.image img{
+    margin: 0 auto;
+}
+.info{
+    padding-left: 30px;
+}
+.info div{
+    width: 100%;
+    display:inline-block;
+    margin-bottom: 6px;
+}
+.info div h5{
+    font-size: 14px;
+    width: 20%;
+    text-align: left;
+    float: left;
+}
+.info div p{
+    font-size: 14px;
+    float: left;
+    width: 80%;
+}
+
+
+
+/* Загрузка фото */
+#uplSelFoldDiv{
+    width: 96%;
+    margin: 0 auto;
+    padding-top: 14px;
+}
+#uplSelFoldDiv form{
+    padding-top: 6px;
+}
+.uploadPhotoSelect{
+    width: 100%;
+}
+
+/*   Drop area   */
+#drop-area{
+    background-color: azure;
+    border: 3px dashed #b4ddec;
+    width: 96%;
+    min-height: 300px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 100;
+    border-radius: 10px;
+}
+#drop-area div{
+    text-align: center;
+}
+#drop-text{
+    display: block;
+    text-align: center;
+    margin-top: 140px;
+}
+#drop-area div p{
+    text-align: center;
+}
+#drop-area.highlight {
+    background-color: #e5f1f6;
+}
+#gallery{
+    width: 100%;
+    text-align: left;
+}
+.my-form{
+    display: inline-block;
+}
+#gallery div{
+    width: 170px;
+    float: left;
+    position: relative;
+}
+#gallery div div p{
+    text-align: left;
+    margin-left: 6px;
+}
+.uplPhotoDiv{
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 6px;
+    border: 1px solid #bababa;
+    opacity: 50%;
+}
+#gallery div div img{
+    width: 170px;
+    height: 200px;
+    border-radius: 6px 6px 0 0;
+    object-fit: cover;
+}
+#uplPhotoStatus{
+    height: 20px;
+    position: absolute;
+    bottom: 0px;
+    text-align: left;
+}
+#uplPhotoStatus p{
+    text-align: left;
+}
+#drop-browse{
+    color: blueviolet;
+    border-bottom: 1px dashed blueviolet;
+    display: none;
+}
+#drop-browse + lable{
+    color: blueviolet;
+    border-bottom: 1px dashed blueviolet;
+    display: block;
+    display: inline;
+}
+.drop-browse-label{
+    color: #0078d4;
+    border-bottom: 1px solid #0078d4;
+    cursor: pointer;
+}
+.drop-browse-label:hover{
+    opacity: 70%;
+    border-bottom: 0px;
+}
+#drop-browse:hover{
+    border-bottom: 0px;
+}
+#loadProgress{
+    height: 20px;
+    border-radius: 0 0 0 6px;
+    background-color: #48b835;
+}
+#gallery #drop-text{
+    position: relative;
+    z-index: 140;
+}
+
+
+
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}

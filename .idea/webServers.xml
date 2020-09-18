@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="5bd14582-1a51-465b-b7fe-f7ac25de3594" name="LynxArt" url="http://vh58.timeweb.ru">
+        <fileTransfer host="vh58.timeweb.ru" port="21" rootFolder="/LynxArtRu/public_html">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
