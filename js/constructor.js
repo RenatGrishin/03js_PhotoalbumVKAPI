@@ -1,12 +1,3 @@
-/*
-Получить доступ:
-https://oauth.vk.com/authorize?client_id=7576288&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=friends,photos,account&response_type=token&state&v=5.52
-*/
-
-/*
-http://lynxart.ru/#access_token=121677045f72f7e266ea22e65f43c0f229bda1ca83cbfa6cde3aaaa939e825f1e8f189f5ede8d6d5f5dd5&expires_in=86400&user_id=510834216
-*/
-
 let loadScrollProgress = false; // загружается ли контент?
 
 let view = {
