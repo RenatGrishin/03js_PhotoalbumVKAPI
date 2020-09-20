@@ -3,6 +3,10 @@
 https://oauth.vk.com/authorize?client_id=7576288&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=friends,photos,account&response_type=token&state&v=5.52
 */
 
+/*
+http://lynxart.ru/#access_token=121677045f72f7e266ea22e65f43c0f229bda1ca83cbfa6cde3aaaa939e825f1e8f189f5ede8d6d5f5dd5&expires_in=86400&user_id=510834216
+*/
+
 let loadScrollProgress = false; // загружается ли контент?
 
 let view = {
@@ -118,12 +122,25 @@ let view = {
 }
 
 let model = {
-    token: '61859926505fcf220985390395814b831507390ff2e44fd094a6a4887fe71de2313af4d157b105a5db578',
+    token: '121677045f72f7e266ea22e65f43c0f229bda1ca83cbfa6cde3aaaa939e825f1e8f189f5ede8d6d5f5dd5',
+
+    AuthVkAPI: async function(){
+        let clientId = 7576288;
+        let guardKey = 'ZDtSZsqD5V3IoopRMQM4';
+        let serviceKey = '484b3a10484b3a10484b3a10054838a0f04484b484b3a1017084216d61a152a2fd7d0df';
+        let score = 'account,photos';
+        let redirect = 'http://lynxart.ru/index.html';
+        //let redirect = 'https://oauth.vk.com/blank.html';
+
+        let url = `https://oauth.vk.com/authorize?client_id=${clientId}&display=page&redirect_uri=${redirect}&response_type=token&state&v=5.52&scope=${score}`;
+        console.log(url)
+        return url;
+    },
     
     /* API запрос */
     ajaxQuey: async function(urlQuery){
         let ajax = await $.ajax({
-            url: `https://api.vk.com/method/${urlQuery}&v=5.52&access_token=` + this.token,
+            url: `https://api.vk.com/method/${urlQuery}&v=5.52&access_token=` + controller.token,
             method: 'GET',
             dataType: 'JSONP',
             success: function (data){
@@ -136,7 +153,7 @@ let model = {
     /* API отправка файла */
     ajaxPost: async function(urlQuery){
         let ajax = await $.ajax({
-            url: `https://api.vk.com/method/${urlQuery}&v=5.52&access_token=` + this.token,
+            url: `https://api.vk.com/method/${urlQuery}&v=5.52&access_token=` + controller.token,
             method: 'POST',
             dataType: 'JSONP',
             success: function(data){
@@ -278,6 +295,35 @@ let model = {
     SetAtributeElement: function(element, tag, func){
         let tegA = document.querySelector(element)
         tegA.setAttribute(tag, func)
+    },
+
+    /* возращает токен из адресной строки */
+    GetToken: async function () {
+        console.log('getToken')
+        let url_href = new URL(document.location).hash.split('&');
+        console.log(url_href)
+        if(url_href[0]){
+            console.log('url_href - YES:')
+            console.log(url_href)
+            let url_token = url_href[0].split('=');
+            if(url_token[1]){
+                console.log('url_token - YES: '+ url_token[1])
+                return url_token[1];
+            }
+        }else{
+            console.log('url_href - NO')
+            let link = await model.AuthVkAPI();
+            window.location.href = link;
+        }
+    },
+    getCookie: function (cookie_name){
+        let results = document.cookie.match ( '(^|;) ?' + cookie_name + '=([^;]*)(;|$)' );
+        if ( results ){
+            console.log(results)
+            return ( unescape ( results[2] ) )
+        }else{
+            return null
+        }
     }
 }
 
@@ -287,10 +333,12 @@ let controller = {
     startLoadContent: 50, // с какой фотки начинается загрузка фото
     uploadAlbumId: 276410952, // В какой альбом загрузить фото
     uploadIdPhoto: 0,
+    token: '',
     
     /* Создаем шапку (имя пользователя, название альбома или фото) */
     createHeader: async function(){
         let user = await model.ajaxQuey(`account.getProfileInfo?`);
+        console.log(user)
         view.setHeader(`Welcome, ${user.response.first_name}.`)
     },
     
@@ -441,8 +489,26 @@ let controller = {
         let id = `uplPhoto_${this.uploadIdPhoto}`;
         view.PreviewFile(element, id);
         await controller.UploadFile(element, id);
-    }
+    },
+
+    /* Запуск приложения */
+    StartApp: async function(){
+        if(document.cookie){
+            document.cookie = `token=${await model.GetToken()}; expiress=''`;
+            let cookies = model.getCookie('token')
+            this.token = cookies
+            console.log('cookies: ' + document.cookie)
+            console.log('this.token: ' + this.token)
+            this.openMainPage();
+            console.log('cookie YES: ' + this.token)
+        }else{
+            console.log('cookie NO: ' + document.cookie)
+            document.cookie = model.GetToken();
+        }
+    },
 }
+
+controller.StartApp();
 
 /* проверка скрола */
 $(window).scroll(function(){
@@ -450,4 +516,3 @@ $(window).scroll(function(){
         controller.LoadScrollContent()
     }
 })
-controller.openMainPage();
